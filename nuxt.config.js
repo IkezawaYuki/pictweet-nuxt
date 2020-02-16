@@ -1,3 +1,12 @@
+require('dotenv').config();
+const {API_KEY} = process.env;
+const {AUTH_DOMAIN} = process.env;
+const {DATABASE_URL} = process.env;
+const {PROJECT_ID} = process.env;
+const {STORAGE_BUCKET} = process.env;
+const {MESSAGING_SENDER_ID} = process.env;
+const {APP_ID} = process.env;
+
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -43,13 +52,27 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost:8080/'
   },
+  proxy: {
+    '/api': '/',
+  },
+  env: {
+    API_KEY,
+    AUTH_DOMAIN,
+    DATABASE_URL,
+    PROJECT_ID,
+    STORAGE_BUCKET,
+    MESSAGING_SENDER_ID,
+    APP_ID
+  }, 
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module

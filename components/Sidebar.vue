@@ -39,3 +39,20 @@
     </v-navigation-drawer>
 
 </template>
+
+<script>
+  export default {
+    name: 'default',
+    // data: () => ({
+    //   drawer: null,
+    // }),
+    computed: {
+      drawer(){
+        return null
+      }
+    },
+    methods:{
+
+    }
+  }
+</script>

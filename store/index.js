@@ -1,3 +1,6 @@
+import { createRequestClient } from "./request-client";
+import firebase from "~/plugins/firebase";
+
 export const state = () => ({
   tweets:[],
   tweet: {},
@@ -7,7 +10,11 @@ export const state = () => ({
 
 export const actions = {
   async fetchTweets({commit}, payload){
-    // todo
+    const client = createRequestClient(this.$axios, this.$cookies, this)
+    const res = await client.get(payload.uri, payload.params)
+    console.log(res)
+    console.log(res.Tweets)
+    commit('mutateTweets', res.Tweets)
   },
 }
 
