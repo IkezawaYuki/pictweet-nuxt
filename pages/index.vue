@@ -2,8 +2,11 @@
   <section>
     <div class="container">
       <div class="block">
-        <div class="block tweet-block">
-          <Tweet/>
+        <div class="block tweet-block"  v-for="(tweet, index) in tweets" :key="index">
+          <Tweet
+              :tweet="tweet"
+              :tweet-id="tweet.ID"
+          />
         </div>
       </div>
     </div>
@@ -17,7 +20,9 @@ import Tweet from "~/components/Tweet";
 export default {
   components: {Tweet},
   computed:{
-
+  tweets(){
+      return this.$store.getters.getTweets
+    },
   },
   methods:{
 

@@ -1,22 +1,22 @@
 <template>
   <nuxt-link
-  :to="`tweet/${tweetID}`"
+  :to="`tweet/${tweetId}`"
   >
   <v-card
     class="mx-auto"
     max-width="500"
   >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+      :src= tweet.Image
       height="300px"
     ></v-img>
 
     <v-card-title>
-      景色が綺麗
+      {{ tweet.Title }}
     </v-card-title>
 
     <v-card-subtitle>
-      posted by YUKI
+      {{ tweet.userId }}
     </v-card-subtitle>
   </v-card>
   </nuxt-link>
@@ -28,8 +28,8 @@ export default{
     tweet:{
       type: Object
     },
-    tweetID:{
-      type: String
+    tweetId:{
+      type: Numberc
     },
   },
   filters:{

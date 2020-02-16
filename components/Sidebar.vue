@@ -43,14 +43,9 @@
 <script>
   export default {
     name: 'default',
-    // data: () => ({
-    //   drawer: null,
-    // }),
-    computed: {
-      drawer(){
-        return null
-      }
-    },
+    data: () => ({
+      drawer: null,
+    }),
     methods:{
 
     }
