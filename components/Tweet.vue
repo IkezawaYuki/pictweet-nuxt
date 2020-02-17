@@ -7,16 +7,16 @@
     max-width="500"
   >
     <v-img
-      :src= tweet.Image
+      :src= tweet.image
       height="300px"
     ></v-img>
 
     <v-card-title>
-      {{ tweet.Title }}
+      {{ tweet.title }}
     </v-card-title>
 
     <v-card-subtitle>
-      {{ tweet.userId }}
+      {{ tweet.user_id }}
     </v-card-subtitle>
   </v-card>
   </nuxt-link>
@@ -29,7 +29,7 @@ export default{
       type: Object
     },
     tweetId:{
-      type: Numberc
+      type: Number
     },
   },
   filters:{

@@ -5,7 +5,7 @@
         <div class="block tweet-block"  v-for="(tweet, index) in tweets" :key="index">
           <Tweet
               :tweet="tweet"
-              :tweet-id="tweet.ID"
+              :tweet-id="tweet.id"
           />
         </div>
       </div>
