@@ -12,14 +12,14 @@ export const actions = {
   async fetchTweets({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.get(payload.uri, payload.params)
-    console.log(res.Tweets)
+    console.log(res)
     commit('mutateTweets', res)
   },
 }
 
 export const mutations = {
   mutateTweets(state, payload){
-    state.tweets = payload.Tweets ? state.tweets.concat(payload.Tweets) : []
+    state.tweets = payload ? state.tweets.concat(payload) : []
   },
 }
 
