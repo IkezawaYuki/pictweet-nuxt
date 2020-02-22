@@ -4,20 +4,30 @@
   >
   <v-card
     class="mx-auto"
-    max-width="500"
+    width="500"
   >
+  <v-list-item>
+      <v-list-item-avatar color="grey">
+      <v-img
+        :src= tweet.avatar
+        alt="avatar"
+      ></v-img>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title class="headline">{{tweet.title}}</v-list-item-title>
+        <v-list-item-subtitle>by {{tweet.author}}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
     <v-img
       :src= tweet.image
       height="300px"
     ></v-img>
 
     <v-card-title>
-      {{ tweet.title }}
+      {{ tweet.text }}
     </v-card-title>
 
-    <v-card-subtitle>
-      {{ tweet.user_id }}
-    </v-card-subtitle>
   </v-card>
   </nuxt-link>
 </template>
