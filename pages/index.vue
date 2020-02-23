@@ -10,6 +10,12 @@
         </div>
       </div>
     </div>
+    <div class="text-center" @click="getPage">
+    <v-pagination
+      v-model="page"
+      :length="6"
+    ></v-pagination>
+  </div>
   </section>
 </template>
 
@@ -19,13 +25,21 @@ import Tweet from "~/components/Tweet";
 
 export default {
   components: {Tweet},
+  data(){
+    return {
+      page: 1,
+    }
+  },
   computed:{
   tweets(){
       return this.$store.getters.getTweets
     },
   },
   methods:{
-
+    getPage(){
+      console.log(this.page)
+      console.log("get!!!")
+    }
   },
   async fetch({store}){
     const payload = {

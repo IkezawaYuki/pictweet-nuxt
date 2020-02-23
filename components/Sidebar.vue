@@ -5,7 +5,8 @@
       left
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link @click="toRoot">
+          
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -42,12 +43,14 @@
 
 <script>
   export default {
-    name: 'default',
+    name: 'Sidebar',
     data: () => ({
       drawer: null,
     }),
     methods:{
-
+      toRoot(){
+        this.$router.push("/");
+      }
     }
   }
 </script>

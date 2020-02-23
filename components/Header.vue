@@ -10,18 +10,15 @@
       <v-toolbar-title class="white--text">Pictweet</v-toolbar-title>
       <v-spacer />
       <v-toolbar-items class="toolbar-items-button">
-
-        <v-btn
-        text
-        >
-        <span>Login</span>
-        </v-btn>
-
-        <v-btn
-        text
-        >
-        <span>Logout</span>
-        </v-btn>
+            <v-card-actions>
+              <v-btn text>新規投稿</v-btn>
+            </v-card-actions>
+            <v-card-actions>
+              <v-btn text>ログイン</v-btn>
+            </v-card-actions>
+            <v-card-actions>
+              <v-btn text>ログアウト</v-btn>
+            </v-card-actions>
 
       </v-toolbar-items>
     </v-app-bar>
