@@ -14,10 +14,20 @@ export class RequestClient{
     })
   }
 
-  async post(uri){
-    return await this.axios.$post(uri).catch(err => {
-      return this.retry(err)
-    })
+  async post(uri, params = {}){
+    if(params.length == 0){
+      return await this.axios.$post(uri).catch(err => {
+        return this.retry(err)
+      })
+    }else{
+      var param = new URLSearchParams();
+      for(let key in params){
+        param.append(key, params[key])
+      }
+      return await this.axios.$post(uri, param).catch(err => {
+        return this.retry(err)
+      })
+    }
   }
 }
 
