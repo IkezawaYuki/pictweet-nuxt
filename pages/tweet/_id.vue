@@ -17,10 +17,6 @@
       <div>
         {{ tweet.text }} <v-spacer></v-spacer>{{ tweet.post_date }}
       </div>
-      
-      <div>
-        
-      </div>
       <br>
 
     <v-layout>

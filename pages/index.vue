@@ -31,7 +31,7 @@ export default {
     }
   },
   computed:{
-  tweets(){
+    tweets(){
       return this.$store.getters.getTweets
     },
   },

@@ -8,6 +8,11 @@ export const ROUTES = {
 
     },
   },
+  POST: {
+    TWEET: {
+      CREATE: "api/tweet/"
+    }
+  },
 }
 
 export default ROUTES;

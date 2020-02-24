@@ -15,12 +15,19 @@ export const actions = {
     commit('mutateTweets', res)
   },
   async showTweet({commit}, payload){
-    console.log(payload)
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.get(payload.uri, payload.params)
     console.log(res)
     commit('mutateTweetDetail', res)
   },
+  async postTweet({commit}, payload){
+    console.log(payload)
+    console.log("aa")
+    const client = createRequestClient(this.$axios, this.$cookies, this)
+    const res = await client.get(payload.uri, payload.params)
+    console.log(res)
+    // todo
+  }
 }
 
 export const mutations = {
