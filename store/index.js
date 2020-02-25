@@ -24,6 +24,13 @@ export const actions = {
     console.log(payload)
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
+    // todo 追加後のデータを画面に反映
+    return res
+  },
+  async addComment({commit}, payload){
+    console.log(payload)
+    const client = createRequestClient(this.$axios, this.$cookies, this)
+    const res = await client.post(payload.uri, payload.params)
     return res
   }
 }

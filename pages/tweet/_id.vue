@@ -30,7 +30,9 @@
           >
           <v-toolbar-title>コメント一覧</v-toolbar-title>
             <v-card-actions>
-              <v-btn text>コメントを投稿</v-btn>
+              <v-btn text
+              @click="overlay = !overlay"
+              >コメントを投稿</v-btn>
             </v-card-actions>
           </v-toolbar>
           <v-list two-line subheader>
@@ -58,8 +60,34 @@
               </v-list-item-content>
             </div>
            
+           <div class="text-center">
+            <v-overlay :value="overlay">
+              <v-card
+                class="mx-auto"
+                width="600"
+              >
+              <v-btn
+                icon
+                @click="overlay = false"
+              >
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+                <div class="comment_area">
+                  <v-textarea
+                  label="コメント"
+                  v-model="comment_text"
+                  >
+                  </v-textarea>
+                  <v-col class="text-center" cols="12" sm="4">
+                    <div class="my-2">
+                      <v-btn large color="primary" @click="sendComment">送信</v-btn>
+                    </div>
+                  </v-col>
+                </div>
 
-
+              </v-card>
+            </v-overlay>
+          </div>
           </v-list>
         </v-card>
 
@@ -72,13 +100,32 @@
 import ROUTES from '~/routes/api';
 
 export default {
+  data: () => ({
+      overlay: false,
+      comment_text:'',
+    }),
   computed:{
     tweet(){
       return this.$store.getters.getTweetDetail
     },
   },
   methods:{
-
+    async sendComment(){
+      const payload = {
+        uri: ROUTES.POST.COMMENT.CREATE.replace(':id', this.$route.params.id),
+        params: {
+          tweet_id: this.$route.params.id,
+          comment: this.comment_text,
+          user_id: 1
+        }
+      }
+      console.log(payload)
+      var res = await this.$store.dispatch('addComment', payload)
+      this.reload()
+    },
+    reload() {
+        this.$router.go({path: this.$router.currentRoute.path, force: true});
+    },
   },
   async fetch({store, route}){
     await store.dispatch('showTweet', {
@@ -88,3 +135,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.comment_area{
+  margin: 20px;
+}
+</style>

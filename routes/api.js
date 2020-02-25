@@ -4,13 +4,13 @@ export const ROUTES = {
     TWEET: {
       SHOW: 'api/tweet/:id',
     },
-    COMMENT:{
-
-    },
   },
   POST: {
     TWEET: {
-      CREATE: "api/tweet/"
+      CREATE: "api/tweet/",
+    },
+    COMMENT: {
+      CREATE: "api/comment/:id",
     }
   },
 }
