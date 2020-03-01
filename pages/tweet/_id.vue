@@ -119,7 +119,6 @@ export default {
           user_id: 1
         }
       }
-      console.log(payload)
       var res = await this.$store.dispatch('addComment', payload)
       this.reload()
     },

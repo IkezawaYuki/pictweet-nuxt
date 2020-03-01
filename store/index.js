@@ -6,6 +6,7 @@ export const state = () => ({
   tweet: {},
   comments: [],
   comment: {},
+  token: '',
 })
 
 export const actions = {
@@ -31,7 +32,23 @@ export const actions = {
     return res
   },
   async login({commit}, payload){
-    console.log(payload)
+    const res = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    const token = await res.user.getIdToken()
+    this.$cookies.set('jwt_token', token)
+    commit('mutateToken', token)
+    this.app.router.push('/')
+  },
+  async signUp({commit}, payload){
+    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+    const res = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    const token = await res.user.getIdToken()
+    commit('mutateToken', token)
+    this.app.router.push("/")
+  },
+  async logout({commit}, payload){
+    await firebase.auth().signOut()
+    commit('mutateToken', null)
+    this.$cookies.remove('jwt_token')
   }
 }
 
@@ -44,7 +61,11 @@ export const mutations = {
   },
   mutatePostTweet(state, payload){
     state.tweets.push(payload)
-  }
+  },
+  mutateToken(state, payload){
+    state.token = payload
+  },
+
 }
 
 export const getters = {
@@ -54,5 +75,8 @@ export const getters = {
   getTweetDetail(state){
     return state.tweet
   },
-
+  isLoggedIn(state){
+    console.log(state.token)
+    return !!state.token
+  }
 }
