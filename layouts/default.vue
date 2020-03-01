@@ -16,7 +16,7 @@
               <v-btn text @click="toPostTweet">新規投稿</v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn text>ログイン</v-btn>
+              <v-btn text @click="toLogin">ログイン</v-btn>
             </v-card-actions>
             <v-card-actions>
               <v-btn text>ログアウト</v-btn>
@@ -110,6 +110,9 @@
       },
       toPostTweet(){
         this.$router.push("/tweet/post");
+      },
+      toLogin(){
+        this.$router.push("/login");
       }
     }
   }

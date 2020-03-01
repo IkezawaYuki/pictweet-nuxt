@@ -79,8 +79,7 @@ import ROUTES from "~/routes/api";
               comment: this.comment
             }
           }
-          var res = await this.$store.dispatch('postTweet', payload)
-          console.log(res)
+          await this.$store.dispatch('postTweet', payload)
           this.$router.push("/");
         }
       },

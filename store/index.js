@@ -17,21 +17,21 @@ export const actions = {
   async showTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.get(payload.uri, payload.params)
-    console.log(res)
     commit('mutateTweetDetail', res)
   },
   async postTweet({commit}, payload){
-    console.log(payload)
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
-    // todo 追加後のデータを画面に反映
-    return res
+    console.log(res)
+    commit('mutatePostTweet', res)
   },
   async addComment({commit}, payload){
-    console.log(payload)
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
     return res
+  },
+  async login({commit}, payload){
+    console.log(payload)
   }
 }
 
@@ -42,6 +42,9 @@ export const mutations = {
   mutateTweetDetail(state, payload){
     state.tweet = payload
   },
+  mutatePostTweet(state, payload){
+    state.tweets.push(payload)
+  }
 }
 
 export const getters = {
