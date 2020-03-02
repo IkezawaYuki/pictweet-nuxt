@@ -11,6 +11,9 @@ export const ROUTES = {
     },
     COMMENT: {
       CREATE: "api/comment/:id",
+    },
+    USER: {
+      CREATE: "api/user/",
     }
   },
 }

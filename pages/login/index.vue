@@ -6,6 +6,7 @@
               label="ID (e-mail)"
               type="email"
               v-model="email"
+              required
               ></v-text-field>
           </div>
 
@@ -14,6 +15,7 @@
               type="password"
               label="パスワード"
               v-model="password"
+              required
               ></v-text-field>
           </div>
 

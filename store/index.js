@@ -7,6 +7,7 @@ export const state = () => ({
   comments: [],
   comment: {},
   token: '',
+  email: '',
 })
 
 export const actions = {
@@ -36,18 +37,23 @@ export const actions = {
     const token = await res.user.getIdToken()
     this.$cookies.set('jwt_token', token)
     commit('mutateToken', token)
+    commit('mutateEmail', payload.email)
     this.app.router.push('/')
   },
   async signUp({commit}, payload){
     await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
     const res = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
     const token = await res.user.getIdToken()
+    const client = createRequestClient(this.$axios, this.$cookies, this)
+    
     commit('mutateToken', token)
+    commit('mutateEmail', payload.email)
     this.app.router.push("/")
   },
   async logout({commit}, payload){
     await firebase.auth().signOut()
     commit('mutateToken', null)
+    commit('mutateEmail', null)
     this.$cookies.remove('jwt_token')
   }
 }
@@ -65,6 +71,9 @@ export const mutations = {
   mutateToken(state, payload){
     state.token = payload
   },
+  mutateEmail(state, payload){
+    state.email = payload
+  }
 
 }
 
@@ -76,7 +85,6 @@ export const getters = {
     return state.tweet
   },
   isLoggedIn(state){
-    console.log(state.token)
     return !!state.token
   }
 }
