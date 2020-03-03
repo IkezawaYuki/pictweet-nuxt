@@ -62,16 +62,18 @@ export default{
   },
   methods:{
     signup(){
-      let user = {
-        name: this.name,
-        email: this.email,
-        avatar: this.avatar,
-        password: this.password,
-        password_again: this.password_again,
+      const payload = {
         uri: ROUTES.POST.USER.CREATE,
+        params: {
+          name: this.name,
+          email: this.email,
+          avatar: this.avatar,
+          password: this.password,
+          password_again: this.password_again,
+        }
       }
       if (this.validate(user)){
-        this.$store.dispatch('signUp', user)
+        this.$store.dispatch('signUp', params)
       }
     },
     validate(user){

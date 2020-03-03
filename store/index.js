@@ -41,11 +41,11 @@ export const actions = {
     this.app.router.push('/')
   },
   async signUp({commit}, payload){
-    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-    const res = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    await firebase.auth().createUserWithEmailAndPassword(payload.params.email, payload.params.password)
+    const res = await firebase.auth().signInWithEmailAndPassword(payload.params.email, payload.params.password)
     const token = await res.user.getIdToken()
     const client = createRequestClient(this.$axios, this.$cookies, this)
-    
+    client.post(payload.params)
     commit('mutateToken', token)
     commit('mutateEmail', payload.email)
     this.app.router.push("/")
