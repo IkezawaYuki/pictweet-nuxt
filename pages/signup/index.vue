@@ -50,6 +50,8 @@
 
 
 <script>
+import ROUTES from "~/routes/api";
+
 export default{
   data(){
     return {
@@ -72,15 +74,15 @@ export default{
           password_again: this.password_again,
         }
       }
-      if (this.validate(user)){
-        this.$store.dispatch('signUp', params)
+      if (this.validate(payload.params)){
+        this.$store.dispatch('signUp', payload)
       }
     },
     validate(user){
       if(user.name == "" || user.email == ""){
         return false
       }
-      if(user.password == user.password_again){
+      if(user.password != user.password_again){
         return false
       }
       return true
