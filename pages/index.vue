@@ -38,7 +38,6 @@ export default {
   methods:{
     getPage(){
       console.log(this.page)
-      console.log("get!!!")
     }
   },
   async fetch({store}){

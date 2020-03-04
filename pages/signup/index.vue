@@ -71,7 +71,6 @@ export default{
           email: this.email,
           avatar: this.avatar,
           password: this.password,
-          password_again: this.password_again,
         }
       }
       if (this.validate(payload.params)){

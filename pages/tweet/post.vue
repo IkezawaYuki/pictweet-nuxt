@@ -66,7 +66,6 @@ import ROUTES from "~/routes/api";
         v => !!v || 'コメントを入力してください',
       ],
     }),
-
     methods: {
       async validate ({store}) {
         if (this.$refs.form.validate()) {
@@ -86,9 +85,13 @@ import ROUTES from "~/routes/api";
       reset () {
         this.$refs.form.reset()
       },
-
     },
-  }
+    async fetch({store}){
+        if(!store.getters.isLoggedIn){
+          // todo 画面遷移　this.$router.push("/");
+        }
+     }
+}
 
 </script>
 

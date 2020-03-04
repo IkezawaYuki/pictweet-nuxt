@@ -24,7 +24,6 @@ export const actions = {
   async postTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
-    console.log(res)
     commit('mutatePostTweet', res)
   },
   async addComment({commit}, payload){
@@ -45,9 +44,6 @@ export const actions = {
     const res = await firebase.auth().signInWithEmailAndPassword(payload.params.email, payload.params.password)
     const token = await res.user.getIdToken()
     const client = createRequestClient(this.$axios, this.$cookies, this)
-    console.log("sign up")
-    console.log(payload.uri)
-    console.log(payload.params)
     client.post(payload.uri, payload.params)
     commit('mutateToken', token)
     commit('mutateEmail', payload.email)
@@ -58,6 +54,11 @@ export const actions = {
     commit('mutateToken', null)
     commit('mutateEmail', null)
     this.$cookies.remove('jwt_token')
+    this.app.router.push("/")
+  },
+  async setToken({commit}, payload){
+    this.$cookies.set('jwt_token', payload)
+    commit('mutateToken', payload)
   }
 }
 
