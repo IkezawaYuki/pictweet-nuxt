@@ -8,6 +8,7 @@ export const state = () => ({
   comment: {},
   token: '',
   email: '',
+  favorites: [],
 })
 
 export const actions = {
@@ -15,6 +16,9 @@ export const actions = {
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.get(payload.uri, payload.params)
     commit('mutateTweets', res)
+  },
+  async fetchFavorites({commit}, payload){
+    console.log("fetch favorites")
   },
   async showTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
@@ -77,8 +81,10 @@ export const mutations = {
   },
   mutateEmail(state, payload){
     state.email = payload
-  }
-
+  },
+  mutateFavorites(state, payload){
+    state.favorites = payload ? state.tweets.concat(payload) : []
+  },
 }
 
 export const getters = {
@@ -90,5 +96,8 @@ export const getters = {
   },
   isLoggedIn(state){
     return !!state.token
+  },
+  getFavorites(state){
+    return state.favorites
   }
 }

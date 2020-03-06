@@ -88,7 +88,7 @@ import ROUTES from "~/routes/api";
     },
     async fetch({store}){
         if(!store.getters.isLoggedIn){
-          // todo 画面遷移　this.$router.push("/");
+          // todo 画面遷移 this.$router.push("/");
         }
      }
 }

@@ -4,6 +4,7 @@ export const ROUTES = {
     TWEET: {
       SHOW: 'api/tweet/:id',
     },
+    FAVORITE: 'api/favorite',
   },
   POST: {
     TWEET: {
