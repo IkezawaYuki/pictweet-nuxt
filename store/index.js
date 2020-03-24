@@ -68,10 +68,12 @@ export const actions = {
 
 export const mutations = {
   mutateTweets(state, payload){
-    state.tweets = payload ? state.tweets.concat(payload) : []
+    state.tweets = payload ? state.tweets.concat(payload.tweets) : []
   },
   mutateTweetDetail(state, payload){
-    state.tweet = payload
+    state.tweet = payload.tweet
+    state.comments = []
+    state.comments = payload.comments ? state.comments.concat(payload.comments) : []
   },
   mutatePostTweet(state, payload){
     state.tweets.push(payload)
@@ -93,6 +95,9 @@ export const getters = {
   },
   getTweetDetail(state){
     return state.tweet
+  },
+  getComments(state){
+    return state.comments
   },
   isLoggedIn(state){
     return !!state.token

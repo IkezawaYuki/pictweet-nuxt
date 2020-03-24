@@ -5,14 +5,14 @@
       </div>
       <div>
         <v-img
-        :src=tweet.image
+        :src=tweet.image_url
         height="400px"
         max-width="900px"
         >
         </v-img>
       </div>
       <div>
-        posted by {{tweet.author}}
+        posted by {{tweet.author_url}}
       </div>
       <div>
         {{ tweet.text }} <v-spacer></v-spacer>{{ tweet.post_date }}
@@ -37,20 +37,20 @@
           </v-toolbar>
           <v-list two-line subheader>
 
-            <div v-if="tweet.comments">
+            <div v-if="comments">
                <v-list-item
-                v-for="(comment, index) in tweet.comments"
+                v-for="(comment, index) in comments"
                 :key="index"
               >
               <v-list-item-avatar>
                 <v-img
-                :src= comment.avatar
+                :src= comment.avatar_url
                 alt="avatar"
               ></v-img>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title v-text="comment.text"></v-list-item-title>
-                <v-list-item-subtitle v-text="comment.post_date"></v-list-item-subtitle>
+                <v-list-item-subtitle v-text="comment.created_at"></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             </div>
@@ -107,6 +107,10 @@ export default {
   computed:{
     tweet(){
       return this.$store.getters.getTweetDetail
+    },
+    // todo comment getter
+    comments(){
+      return this.$store.getters.getComments
     },
   },
   methods:{

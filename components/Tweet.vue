@@ -9,7 +9,7 @@
   <v-list-item>
       <v-list-item-avatar color="grey">
       <v-img
-        :src= tweet.avatar
+        :src= tweet.avatar_url
         alt="avatar"
       ></v-img>
       </v-list-item-avatar>
@@ -20,7 +20,7 @@
     </v-list-item>
 
     <v-img
-      :src= tweet.image
+      :src= tweet.image_url
       height="300px"
     ></v-img>
 
