@@ -8,13 +8,13 @@ export const ROUTES = {
   },
   POST: {
     TWEET: {
-      CREATE: "api/tweet/",
+      CREATE: "api/tweet",
     },
     COMMENT: {
       CREATE: "api/comment/:id",
     },
     USER: {
-      CREATE: "api/user/",
+      CREATE: "api/user",
     }
   },
 }

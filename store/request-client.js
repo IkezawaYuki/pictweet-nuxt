@@ -20,16 +20,14 @@ export class RequestClient{
         return this.retry(err)
       })
     }else{
-      var param = new URLSearchParams();
-      for(let key in params){
-        param.append(key, params[key])
-      }
-      return await this.axios.$post(uri, param).catch(err => {
+      const data = JSON.stringify(params)
+      return await this.axios.$post(uri, data).catch(err => {
         return this.retry(err)
       })
     }
   }
 }
+
 
 export function createRequestClient(axios, cookies, store){
   return new RequestClient(axios, cookies, store)

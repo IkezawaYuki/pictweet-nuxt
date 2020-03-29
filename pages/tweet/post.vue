@@ -74,8 +74,9 @@ import ROUTES from "~/routes/api";
             uri: ROUTES.POST.TWEET.CREATE,
             params: {
               title: this.title,
-              url: this.url,
-              comment: this.comment
+              image_url: this.url,
+              comment: this.comment,
+              user_id: 1,
             }
           }
           await this.$store.dispatch('postTweet', payload)

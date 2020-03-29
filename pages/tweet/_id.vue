@@ -108,7 +108,6 @@ export default {
     tweet(){
       return this.$store.getters.getTweetDetail
     },
-    // todo comment getter
     comments(){
       return this.$store.getters.getComments
     },
