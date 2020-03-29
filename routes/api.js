@@ -11,7 +11,7 @@ export const ROUTES = {
       CREATE: "api/tweet",
     },
     COMMENT: {
-      CREATE: "api/comment/:id",
+      CREATE: "api/comment",
     },
     USER: {
       CREATE: "api/user",

@@ -75,7 +75,7 @@ import ROUTES from "~/routes/api";
             params: {
               title: this.title,
               image_url: this.url,
-              comment: this.comment,
+              content: this.comment,
               user_id: 1,
             }
           }

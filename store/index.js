@@ -28,12 +28,13 @@ export const actions = {
   async postTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
-    commit('mutatePostTweet', res)
+    console.log(res)
+    commit('mutatePostTweet', res.tweet)
   },
   async addComment({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
-    return res
+    commit('mutateAddComment', res.comment)
   },
   async login({commit}, payload){
     const res = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
@@ -87,6 +88,9 @@ export const mutations = {
   mutateFavorites(state, payload){
     state.favorites = payload ? state.tweets.concat(payload) : []
   },
+  mutateAddComment(state, payload){
+    state.comments.push(payload)
+  }
 }
 
 export const getters = {

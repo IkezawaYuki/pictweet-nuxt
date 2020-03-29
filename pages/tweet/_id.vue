@@ -115,18 +115,15 @@ export default {
   methods:{
     async sendComment(){
       const payload = {
-        uri: ROUTES.POST.COMMENT.CREATE.replace(':id', this.$route.params.id),
+        uri: ROUTES.POST.COMMENT.CREATE,
         params: {
           tweet_id: this.$route.params.id,
-          comment: this.comment_text,
+          text: this.comment_text,
           user_id: 1
         }
       }
       var res = await this.$store.dispatch('addComment', payload)
-      this.reload()
-    },
-    reload() {
-        this.$router.go({path: this.$router.currentRoute.path, force: true});
+      this.overlay = false
     },
   },
   async fetch({store, route}){
