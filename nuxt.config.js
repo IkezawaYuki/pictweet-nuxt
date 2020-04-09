@@ -40,6 +40,7 @@ export default {
   */
   plugins: [
     '~/plugins/cookies-to-state',
+    '~/plugins/axios',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,6 +55,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
+    '@nuxtjs/proxy',
   ],
   /*
   ** Axios module configuration
