@@ -18,7 +18,9 @@ export const actions = {
     commit('mutateTweets', res)
   },
   async fetchFavorites({commit}, payload){
-    console.log("fetch favorites")
+    const client = createRequestClient(this.$axios, this.$cookies, this)
+    const res = await client.post(payload.uri, payload.email)
+    commit('mutateFavorites', res)
   },
   async showTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
@@ -28,7 +30,6 @@ export const actions = {
   async postTweet({commit}, payload){
     const client = createRequestClient(this.$axios, this.$cookies, this)
     const res = await client.post(payload.uri, payload.params)
-    console.log(res)
     commit('mutatePostTweet', res.tweet)
   },
   async addComment({commit}, payload){
@@ -86,11 +87,11 @@ export const mutations = {
     state.email = payload
   },
   mutateFavorites(state, payload){
-    state.favorites = payload ? state.tweets.concat(payload) : []
+    state.favorites = payload ? state.favorites.concat(payload) : []
   },
   mutateAddComment(state, payload){
     state.comments.push(payload)
-  }
+  },
 }
 
 export const getters = {
@@ -108,5 +109,8 @@ export const getters = {
   },
   getFavorites(state){
     return state.favorites
+  },
+  getEmail(state){
+    return state.email
   }
 }

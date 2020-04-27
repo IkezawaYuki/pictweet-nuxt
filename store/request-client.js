@@ -20,6 +20,7 @@ export class RequestClient{
         return this.retry(err)
       })
     }else{
+      console.log(params)
       const data = JSON.stringify(params)
       return await this.axios.$post(uri, data).catch(err => {
         return this.retry(err)

@@ -11,11 +11,11 @@
       </div>
     </div>
     <div class="text-center" @click="getPage">
-    <v-pagination
-      v-model="page"
-      :length="6"
-    ></v-pagination>
-  </div>
+      <v-pagination
+        v-model="page"
+        :length="6"
+      ></v-pagination>
+    </div>
   </section>
 </template>
 
@@ -24,7 +24,7 @@ import ROUTES from "~/routes/api";
 import Tweet from "~/components/Tweet";
 
 export default {
-  computed: { Tweet },
+  components: { Tweet },
     data(){
     return {
       page: 1,
@@ -33,6 +33,9 @@ export default {
   computed:{
     favorites(){
       return this.$store.getters.getFavorites
+    },
+    loginUsesEmail(){
+      return this.$store.getters.getEmail
     }
   },
   methods:{
@@ -41,12 +44,16 @@ export default {
     }
   },
   async fetch({store}){
+    const email = store.getters.getEmail
+    console.log(email)
     const payload = {
-      uri: ROUTES.GET.FAVORITE
+      uri: ROUTES.POST.FAVORITE,
+      email: email,
     }
-    if(store.getters.getFavorites && store.getters.getFavorites.length > 0){
-      return
-    }
+    // if(store.getters.getFavorites && store.getters.getFavorites.length > 0){
+    //   console.log("true")
+    //   return
+    // }
     await store.dispatch('fetchFavorites', payload)
   }
 }

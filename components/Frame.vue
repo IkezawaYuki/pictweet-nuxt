@@ -39,7 +39,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link @click="toFavorite">
+        <v-list-item link @click="toFavorite"  v-if="isLoggedIn">
           <v-list-item-action>
             <v-icon>mdi-heart</v-icon>
           </v-list-item-action>
